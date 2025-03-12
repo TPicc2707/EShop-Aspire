@@ -35,7 +35,7 @@ public static class ProductEndpoints
         .Produces<Product>(StatusCodes.Status201Created);
 
         // PUT (Update)
-        group.MapPut("/", async (int id, Product inputProduct, ProductService service) =>
+        group.MapPut("/{id}", async (int id, Product inputProduct, ProductService service) =>
         {
             var updatedProduct = await service.GetProductByIdAsync(id);
             if (updatedProduct is null) return Results.NotFound();

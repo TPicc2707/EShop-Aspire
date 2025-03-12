@@ -1,6 +1,37 @@
-@Catalog.API_HostAddress = http://localhost:5126
+@Catalog.API_HostAddress = https://localhost:7167/products
 
-GET {{Catalog.API_HostAddress}}/weatherforecast/
+GET {{Catalog.API_HostAddress}}/
 Accept: application/json
 
 ###
+
+GET {{Catalog.API_HostAddress}}/1
+Accept: application/json
+
+###
+
+POST {{Catalog.API_HostAddress}}/
+Content-Type: application/json
+{
+  "id": 10,
+  "name": "NEW Swn Flashlight",
+  "description": "A NEW swn product for outdoor enthusiasts",
+  "price": 59.99,
+  "imageFile": "product10.png"
+}
+
+###
+
+PUT {{Catalog.API_HostAddress}}/10
+Content-Type: application/json
+{
+  "name": "UPDATED Swn Flashlight",
+  "description": "A UPDATED swn product for outdoor enthusiasts",
+  "price": 19.99,
+  "imageFile": "product10.png"
+}
+
+###
+
+DELETE {{Catalog.API_HostAddress}}/10
+Content-Type: application/json
