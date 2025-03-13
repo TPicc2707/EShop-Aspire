@@ -9,12 +9,24 @@ var postgres = builder
 
 var catalogDb = postgres.AddDatabase("catalogdb");
 
+var cache = builder
+      .AddRedis("cache")
+      .WithRedisInsight()
+      .WithDataVolume()
+      .WithLifetime(ContainerLifetime.Persistent);
+
 
 // Projects
 var catalog = builder
     .AddProject<Projects.Catalog_API>("catalog-api")
     .WithReference(catalogDb)
     .WaitFor(catalogDb);
+
+
+var basket = builder
+    .AddProject<Projects.Basket_API>("basket-api")
+    .WithReference(cache)
+    .WaitFor(cache);
 
 
 builder.Build().Run();

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDefaults", "Aspire\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "Services\Catalog.API\Catalog.API.csproj", "{F5E03E87-19CD-217B-FD1F-57440F89F464}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.API", "Services\Basket.API\Basket.API.csproj", "{EFE39741-07E3-C133-6CC5-8B9A81CC4175}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F5E03E87-19CD-217B-FD1F-57440F89F464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5E03E87-19CD-217B-FD1F-57440F89F464}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5E03E87-19CD-217B-FD1F-57440F89F464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFE39741-07E3-C133-6CC5-8B9A81CC4175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE39741-07E3-C133-6CC5-8B9A81CC4175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE39741-07E3-C133-6CC5-8B9A81CC4175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE39741-07E3-C133-6CC5-8B9A81CC4175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{C7EEECA5-748C-42D0-9D80-319633068827} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E82AB352-B071-4E44-81F0-4468CF1E3F3E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{F5E03E87-19CD-217B-FD1F-57440F89F464} = {EED877B4-9F13-4003-9662-90391B364CAF}
+		{EFE39741-07E3-C133-6CC5-8B9A81CC4175} = {EED877B4-9F13-4003-9662-90391B364CAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {052351FB-5D5C-4304-878C-2343A7EBE3F7}
