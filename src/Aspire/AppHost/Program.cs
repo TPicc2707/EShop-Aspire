@@ -26,6 +26,7 @@ var catalog = builder
 var basket = builder
     .AddProject<Projects.Basket_API>("basket-api")
     .WithReference(cache)
+    .WithReference(catalog)
     .WaitFor(cache);
 
 

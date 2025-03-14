@@ -7,6 +7,11 @@ builder.AddRedisDistributedCache(connectionName: "cache");
 
 builder.Services.AddScoped<BasketService>();
 
+builder.Services.AddHttpClient<CatalogApiClient>(client =>
+{
+    client.BaseAddress = new("https+http://catalog-api");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
