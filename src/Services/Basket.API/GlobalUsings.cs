@@ -4,4 +4,8 @@ global using Basket.API.Models;
 global using Basket.API.Services;
 global using Catalog.API.Models;
 global using Microsoft.Extensions.Caching.Distributed;
+global using ServiceDefaults.Messaging;
+global using System.Reflection;
 global using System.Text.Json;
+global using MassTransit;
+global using ServiceDefaults.Messaging.Events;

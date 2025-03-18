@@ -1,15 +1,16 @@
 @Basket.API_HostAddress = https://localhost:7060/basket
-
-GET {{Basket.API_HostAddress}}/weatherforecast/
-Accept: application/json
+@accessToken = eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0b3hQaFA0Q0ZEZ21NV192MmxvdmoyWi1fUEE5TXl3U2c4ZndBNG1rWXkwIn0.eyJleHAiOjE3NDIzMDM0OTMsImlhdCI6MTc0MjMwMzE5MywianRpIjoiMDBkNmFjMTgtMmM3ZC00ZTRmLWExMDYtNTkzYTg4MzBiMmYyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9lc2hvcCIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJhMWEwYzc3Yi1lOTk1LTQ1MzQtODJlNy1hOTczMjI3MDg2ZWYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJlc2hvcC1jbGllbnQiLCJzaWQiOiIwNDE4NTJmZC01OWJiLTRlYmItYWY3Yy00MWZiMjMxMDRmYjMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1lc2hvcCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6InRlc3QgdGVzdCIsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3QiLCJnaXZlbl9uYW1lIjoidGVzdCIsImZhbWlseV9uYW1lIjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSJ9.ffV4iGIeGOku3X0JJH4g4tNTP9ld1PPHIuFgzctqayU-XTByY1xrlnuDh0MHksbSax1SIHO_3akBs-0aXUClLV3ZxAGkApmLuu0Esexp0Ze2OtZMiuRHrgLKC4zMVQJatSbuy0qk02aMoqVf-spAJkg4nfpj9yEIj7vnr4JxNklkaM2zd-xMqjIYvyiKgS1ZWmu7wqfAaaoV3OOtmAmgJYIS4vF9otT-_7YYyJaKasi6PCTSQ-HxRuyBW78CQa3OoohpnB_0Xn4K3DZ_xBtoQxALeAHdx7OP1g57ZdjLAVG77WdmGhDZ_HHOeXB3ZveZz4F_fZy9DOMNbmlo3w73_w
 
 ###
 GET {{Basket.API_HostAddress}}/swn
 Accept: application/json
+Authorization: Bearer {{accessToken}}
+
 
 ###
 POST {{Basket.API_HostAddress}}
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 {
   "UserName": "swn",
   "Items": [
@@ -33,6 +34,7 @@ Content-Type: application/json
 ###
 POST {{Basket.API_HostAddress}}
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 {
   "UserName": "swn",
   "Items": [
@@ -63,3 +65,11 @@ Content-Type: application/json
 ###
 DELETE {{Basket.API_HostAddress}}/swn
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+POST http://localhost:8080/realms/eshop/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=eshop-client&scope=email openid&username=test&password=1234

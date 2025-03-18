@@ -15,19 +15,36 @@ var cache = builder
       .WithDataVolume()
       .WithLifetime(ContainerLifetime.Persistent);
 
+var rabbitmq = builder
+      .AddRabbitMQ("rabbitmq")
+      .WithManagementPlugin()
+      .WithDataVolume()
+      .WithLifetime(ContainerLifetime.Persistent);
+
+var keycloak = builder
+      .AddKeycloak("keycloak", 8080)
+      .WithDataVolume()
+      .WithLifetime(ContainerLifetime.Persistent);
+
 
 // Projects
 var catalog = builder
     .AddProject<Projects.Catalog_API>("catalog-api")
     .WithReference(catalogDb)
-    .WaitFor(catalogDb);
+    .WithReference(rabbitmq)
+    .WaitFor(catalogDb)
+    .WaitFor(rabbitmq);
 
 
 var basket = builder
     .AddProject<Projects.Basket_API>("basket-api")
     .WithReference(cache)
     .WithReference(catalog)
-    .WaitFor(cache);
+    .WithReference(rabbitmq)
+    .WithReference(keycloak)
+    .WaitFor(cache)
+    .WaitFor(rabbitmq)
+    .WaitFor(keycloak);
 
 
 builder.Build().Run();
