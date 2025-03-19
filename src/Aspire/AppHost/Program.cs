@@ -47,4 +47,14 @@ var basket = builder
     .WaitFor(keycloak);
 
 
+var webapp = builder
+    .AddProject<Projects.WebApp>("webapp")
+    .WithExternalHttpEndpoints()
+    .WithReference(catalog)
+    .WithReference(cache)
+    .WithReference(basket)
+    .WaitFor(catalog)
+    .WaitFor(basket);
+
+
 builder.Build().Run();

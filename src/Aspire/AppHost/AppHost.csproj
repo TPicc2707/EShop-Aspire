@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Frontend\WebApp\WebApp.csproj" />
     <ProjectReference Include="..\..\Services\Basket.API\Basket.API.csproj" />
     <ProjectReference Include="..\..\Services\Catalog.API\Catalog.API.csproj" />
   </ItemGroup>
