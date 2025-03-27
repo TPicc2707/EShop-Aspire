@@ -4,7 +4,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var postgres = builder
         .AddPostgres("postgres")
         .WithPgAdmin()
-        .WithDataVolume()
+        //.WithDataVolume()
         .WithLifetime(ContainerLifetime.Persistent);
 
 var catalogDb = postgres.AddDatabase("catalogdb");
@@ -12,19 +12,37 @@ var catalogDb = postgres.AddDatabase("catalogdb");
 var cache = builder
       .AddRedis("cache")
       .WithRedisInsight()
-      .WithDataVolume()
+      //.WithDataVolume()
       .WithLifetime(ContainerLifetime.Persistent);
 
 var rabbitmq = builder
       .AddRabbitMQ("rabbitmq")
       .WithManagementPlugin()
-      .WithDataVolume()
+      //.WithDataVolume()
       .WithLifetime(ContainerLifetime.Persistent);
 
 var keycloak = builder
       .AddKeycloak("keycloak", 8080)
-      .WithDataVolume()
+      //.WithDataVolume()
       .WithLifetime(ContainerLifetime.Persistent);
+
+if (builder.ExecutionContext.IsRunMode)
+{
+    postgres.WithDataVolume();
+    cache.WithDataVolume();
+    rabbitmq.WithDataVolume();
+    keycloak.WithDataVolume();
+}
+
+var ollama = builder
+      .AddOllama("ollama", 11434)
+      .WithDataVolume()
+      .WithLifetime(ContainerLifetime.Persistent)
+      .WithOpenWebUI();
+
+var llama = ollama.AddModel("llama3.2");
+
+var embedding = ollama.AddModel("all-minilm");
 
 
 // Projects
@@ -32,8 +50,12 @@ var catalog = builder
     .AddProject<Projects.Catalog_API>("catalog-api")
     .WithReference(catalogDb)
     .WithReference(rabbitmq)
+    .WithReference(llama)
+    .WithReference(embedding)
     .WaitFor(catalogDb)
-    .WaitFor(rabbitmq);
+    .WaitFor(rabbitmq)
+    .WaitFor(llama)
+    .WaitFor(embedding);
 
 
 var basket = builder

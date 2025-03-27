@@ -59,5 +59,35 @@ public static class ProductEndpoints
         .WithName("DeleteProduct")
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status204NoContent);
+
+        // Support
+        group.MapGet("/support/{query}", async (string query, ProductAIService service) =>
+        {
+            var response = await service.SupportAsync(query);
+
+            return Results.Ok(response);
+        })
+        .WithName("Support")
+        .Produces<List<Product>>(StatusCodes.Status200OK);
+
+        // Traditional Search
+        group.MapGet("/search/{query}", async (string query, ProductService service) =>
+        {
+            var response = await service.SearchProductAsync(query);
+
+            return Results.Ok(response);
+        })
+        .WithName("SearchProducts")
+        .Produces<List<Product>>(StatusCodes.Status200OK);
+
+        // Search AI
+        group.MapGet("/aisearch/{query}", async (string query, ProductAIService service) =>
+        {
+            var response = await service.SearchProductsAsync(query);
+
+            return Results.Ok(response);
+        })
+        .WithName("AISearchProducts")
+        .Produces<List<Product>>(StatusCodes.Status200OK);
     }
 }
